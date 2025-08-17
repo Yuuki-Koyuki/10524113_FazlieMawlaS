@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Jasa Desain Grafis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    nav {
+      background-color: #f4c542;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      background-color: #90ee90;
+      padding: 10px;
+      width: 15%;
+      min-height: 300px;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .marquee {
+      background-color: #ddd;
+      padding: 5px;
+      font-weight: bold;
+      color: red;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Jasa Desain Grafis Profesional</h1>
+</header>
+
+<div class="marquee">
+  <marquee>Promo Hari Ini! Diskon 20% untuk semua layanan!</marquee>
+</div>
+
+<nav>
+  <a href="#" onclick="showPage('produk')">Produk</a>
+  <a href="#" onclick="showPage('transaksi')">Transaksi</a>
+  <a href="#" onclick="showPage('invoice')">Invoice</a>
+  <a href="#" onclick="showPage('kontak')">Kontak Kami</a>
+  <a href="#" onclick="showPage('tentang')">Tentang Kami</a>
+</nav>
+
+<div class="container">
+  <div class="sidebar">Left Sidebar</div>
+
+  <div class="content">
+
+    <!-- Halaman Produk -->
+    <div id="produk">
+      <h2>Jasa Kami</h2>
+      <img src="logo.jpg" alt="Desain Logo" style="width= 3cm; height= 3cm;">
+      <p><strong>Desain Logo Profesional</strong> - Rp150.000</p>
+      <button onclick="showPage('transaksi')">Pesan Sekarang</button>
+    </div>
+
+    <!-- Halaman Transaksi -->
+    <div id="transaksi" class="hidden">
+      <h2>Form Pemesanan</h2>
+      <form id="formTransaksi">
+        Nama: <input type="text" id="nama"><br><br>
+        Email: <input type="email" id="email"><br><br>
+        Layanan: 
+        <select id="layanan">
+          <option value="Desain Logo">Desain Logo - Rp150.000</option>
+        </select><br><br>
+        Catatan: <textarea id="catatan"></textarea><br><br>
+        <button type="button" onclick="buatInvoice()">Buat Pesanan</button>
+      </form>
+    </div>
+
+    <!-- Halaman Invoice -->
+    <div id="invoice" class="hidden">
+      <h2>Struk Pemesanan</h2>
+      <div id="outputInvoice"></div>
+    </div>
+
+    <!-- Halaman Kontak Kami -->
+    <div id="kontak" class="hidden">
+      <h2>Kontak Kami</h2>
+      <p>Nama: Fazlie Mawla Al Ammarik</p>
+      <p>Kelas: IS-3</p>
+      <p>NIM: 10524113</p>
+      <p>Email: abdultukamfaz@email.com</p>
+      <img src="saya.jpg" alt="100x100" style="width: 2cm; height: 2cm;">
+    </div>
+
+    <!-- Halaman Tentang -->
+    <div id="tentang" class="hidden">
+      <h2>Tentang Perusahaan</h2>
+      <p>Kami adalah tim desain profesional yang siap membantu bisnis Anda tampil lebih menonjol dengan desain kreatif dan berkualitas tinggi.</p>
+    </div>
+
+  </div>
+
+  <div class="sidebar">Right Sidebar</div>
+</div>
+
+<footer>
+  &copy; 2025 Jasa Desain Grafis | All Rights Reserved
+</footer>
+
+<script>
+  function showPage(pageId) {
+    const pages = ['produk', 'transaksi', 'invoice', 'kontak', 'tentang'];
+    pages.forEach(page => {
+      document.getElementById(page).classList.add('hidden');
+    });
+    document.getElementById(pageId).classList.remove('hidden');
+  }
+
+  function buatInvoice() {
+    const nama = document.getElementById('nama').value;
+    const email = document.getElementById('email').value;
+    const layanan = document.getElementById('layanan').value;
+    const catatan = document.getElementById('catatan').value;
+
+    const output = `
+      <p>Nama: ${nama}</p>
+      <p>Email: ${email}</p>
+      <p>Layanan: ${layanan}</p>
+      <p>Catatan: ${catatan}</p>
+      <p><strong>Total: Rp150.000</strong></p>
+    `;
+
+    document.getElementById('outputInvoice').innerHTML = output;
+    showPage('invoice');
+  }
+</script>
+
+</body>
+</html>
